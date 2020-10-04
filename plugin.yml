@@ -1,0 +1,11 @@
+name: Coins
+version: 2.0
+author: Almighty-Satan
+
+main: de.almightysatan.coins.CoinsBukkit
+
+commands:
+  coins:
+    description: coins command
+    usage: /coins <player/add/remove> <player>
+    aliases: [balance, bal, money]
