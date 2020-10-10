@@ -54,7 +54,7 @@ class CoinsCommand {
 						if(amount == 1)
 							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin hinzugefügt");
 						else
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coin hinzugefügt");
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins hinzugefügt");
 						break;
 					case "remove":
 						Coins.removeCoins(uuid, amount);
