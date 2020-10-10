@@ -46,8 +46,23 @@ public class CoinsBukkit extends JavaPlugin implements Listener {
 		}else
 			yamlConfiguration = YamlConfiguration.loadConfiguration(configFile);
 
-		Coins.init(yamlConfiguration.getString("mysql.url"), yamlConfiguration.getString("mysql.user"), yamlConfiguration.getString("mysql.pw"));
+		Coins.init(this::scheduleSyncTask, this::isPlayerOnline, this::sendMessage, yamlConfiguration.getString("mysql.url"), yamlConfiguration.getString("mysql.user"), yamlConfiguration.getString("mysql.pw"));
 	}
+	
+	private void scheduleSyncTask(Runnable runnable) {
+        Bukkit.getScheduler().scheduleSyncDelayedTask(this, runnable);
+    }
+    
+    private boolean isPlayerOnline(UUID uuid) {
+        return Bukkit.getPlayer(uuid) != null;
+    }
+    
+    private void sendMessage(UUID uuid, String message) {
+        Player player = Bukkit.getPlayer(uuid);
+        
+        if (player != null)
+            player.sendMessage(message);
+    }
 
 	@EventHandler
 	public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent e) {

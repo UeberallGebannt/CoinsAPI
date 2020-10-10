@@ -59,9 +59,9 @@ class CoinsCommand {
 					case "remove":
 						Coins.removeCoins(uuid, amount);
 						if(amount == 1)
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins entfernt");
-						else
 							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin entfernt");
+						else
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins entfernt");
 						break;
 					case "set":
 						Coins.setCoins(uuid, amount);
