@@ -113,7 +113,10 @@ public class Coins {
 	}
 
 	public static int getCoins(UUID uuid) {
-		return players.get(uuid);
+		if(players.containsKey(uuid))
+			return players.get(uuid);
+		else
+			return 0;
 	}
 
 	public static void setCoins(UUID uuid, int newBalance) {
