@@ -15,7 +15,8 @@ import java.util.function.Function;
 
 public class Coins {
 
-	static final String PREFIX = "§7[§eCoins§7] ";
+	static final String PREFIX = "§eCoins §8» §7";
+	static final int STARTER_COINS = 100;
 
 	static final ScheduledExecutorService EXECUTOR = Executors.newSingleThreadScheduledExecutor();
 
@@ -76,16 +77,16 @@ public class Coins {
 			int amount = newBalance - oldBalance;
 			
 			if(amount == 1)
-				Coins.sendMessageCallback.accept(uuid, "§7[§eCoins§7] Du hast §eeinen §7Coin erhalten");
+				Coins.sendMessageCallback.accept(uuid, PREFIX + "Du hast §eeinen §7Coin erhalten.");
 			else
-				Coins.sendMessageCallback.accept(uuid, "§7[§eCoins§7] Du hast §e" + amount + " §7Coins erhalten");
+				Coins.sendMessageCallback.accept(uuid, PREFIX + "Du hast §e" + amount + " §7Coins erhalten.");
 		}else {
 			int amount = oldBalance - newBalance;
 			
 			if(amount == 1)
-				Coins.sendMessageCallback.accept(uuid, "§7[§eCoins§7] Du hast §eeinen §7Coin verloren");
+				Coins.sendMessageCallback.accept(uuid, PREFIX + "Dir wurde §eein §7Coin entfernt.");
 			else
-				Coins.sendMessageCallback.accept(uuid, "§7[§eCoins§7] Du hast §e" + amount + " §7Coins verloren");
+				Coins.sendMessageCallback.accept(uuid, PREFIX + "Dir wurden §e" + amount + " §7Coins entfernt.");
 		}
 	}
 
@@ -116,7 +117,7 @@ public class Coins {
 		if(players.containsKey(uuid))
 			return players.get(uuid);
 		else
-			return 0;
+			return STARTER_COINS;
 	}
 
 	public static void setCoins(UUID uuid, int newBalance) {
@@ -138,7 +139,7 @@ public class Coins {
 	public static void addCoins(UUID uuid, int amount) {
 		boolean online = Coins.playerOnlineCallback.apply(uuid);
 		if (online) {
-			int oldBalance = Coins.players.containsKey(uuid) ? Coins.players.get(uuid) : 0;
+			int oldBalance = Coins.players.containsKey(uuid) ? Coins.players.get(uuid) : STARTER_COINS;
 			int newBalance = oldBalance + amount;
 			Coins.players.put(uuid, newBalance);
 			Coins.scheduleSyncCallback.accept(() -> callEvents(uuid, oldBalance, newBalance));

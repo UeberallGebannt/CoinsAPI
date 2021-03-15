@@ -20,18 +20,18 @@ class CoinsCommand {
 				else
 					Coins.getOfflineCoins(uuid, balance -> {
 						if(balance == 1)
-							sender.sendMessage(Coins.PREFIX + args[0] + " hat §eeinen §7Coin");
+							sender.sendMessage(Coins.PREFIX + args[0] + " hat §eeinen §7Coin.");
 						else
-							sender.sendMessage(Coins.PREFIX + args[0] + " hat §e" + balance + " §7Coins");
+							sender.sendMessage(Coins.PREFIX + args[0] + " hat §e" + balance + " §7Coins.");
 					});
 			});
 		else if(args.length == 0 || !sender.hasPermission("coins.admin")) {
 			if(sender.isPlayer()) {
 				int coins = Coins.getCoins(sender.getUUID());
 				if(coins == 1)
-					sender.sendMessage(Coins.PREFIX + "Du hast §eeinen §7Coin");
+					sender.sendMessage(Coins.PREFIX + "Du hast §eeinen §7Coin.");
 				else
-					sender.sendMessage(Coins.PREFIX + "Du hast §e" + coins + " §7Coins");
+					sender.sendMessage(Coins.PREFIX + "Du hast §e" + coins + " §7Coins.");
 			}else
 				sendUsage(sender);
 		}else if(args.length == 3) {
@@ -52,23 +52,23 @@ class CoinsCommand {
 					case "add":
 						Coins.addCoins(uuid, amount);
 						if(amount == 1)
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin hinzugefügt");
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin hinzugefügt.");
 						else
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins hinzugefügt");
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins hinzugefügt.");
 						break;
 					case "remove":
 						Coins.removeCoins(uuid, amount);
 						if(amount == 1)
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin entfernt");
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurde §eein §7Coin entfernt.");
 						else
-							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins entfernt");
+							sender.sendMessage(Coins.PREFIX + args[0] + " wurden §e" + amount + " §7Coins entfernt.");
 						break;
 					case "set":
 						Coins.setCoins(uuid, amount);
 						if(amount == 1)
-							sender.sendMessage(Coins.PREFIX + args[0] + " hat nun §eeinen §7Coin");
+							sender.sendMessage(Coins.PREFIX + args[0] + " hat nun §eeinen §7Coin.");
 						else
-							sender.sendMessage(Coins.PREFIX + args[0] + " hat nun §e" + amount + " §7Coins");
+							sender.sendMessage(Coins.PREFIX + args[0] + " hat nun §e" + amount + " §7Coins.");
 						break;
 					default:
 						sendUsage(sender);
@@ -100,10 +100,10 @@ class CoinsCommand {
 	}
 
 	private void sendInvalidPlayer(CoinsCommandSender sender) {
-		sender.sendMessage(Coins.PREFIX + "Dieser Spieler existiert nicht");
+		sender.sendMessage(Coins.PREFIX + "Dieser Spieler existiert nicht.");
 	}
 
 	private void sendUsage(CoinsCommandSender sender) {
-		sender.sendMessage(Coins.PREFIX + "Bitte nutze §e/coins <Name> <add/remove/set> <Anzahl> §7oder §e/coins <Name>");
+		sender.sendMessage(Coins.PREFIX + "§7/coins <Name> <add/remove/set> <Anzahl> §7oder §e/coins <Name>");
 	}
 }

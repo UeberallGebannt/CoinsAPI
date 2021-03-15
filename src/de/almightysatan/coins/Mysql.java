@@ -45,7 +45,7 @@ public class Mysql {
 		if(r.next())
 			return r.getInt(1);
 		else
-			return 0;
+			return Coins.STARTER_COINS;
 	}
 
 	void setCoins(UUID uuid, int balance, boolean setEvent) throws SQLException {
