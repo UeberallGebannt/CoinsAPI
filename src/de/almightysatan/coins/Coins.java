@@ -138,7 +138,7 @@ public class Coins {
 	public static void addCoins(UUID uuid, int amount) {
 		boolean online = Coins.playerOnlineCallback.apply(uuid);
 		if (online) {
-			int oldBalance = Coins.players.get(uuid);
+			int oldBalance = Coins.players.containsKey(uuid) ? Coins.players.get(uuid) : 0;
 			int newBalance = oldBalance + amount;
 			Coins.players.put(uuid, newBalance);
 			Coins.scheduleSyncCallback.accept(() -> callEvents(uuid, oldBalance, newBalance));
